@@ -1,4 +1,4 @@
-import Anthropic from "@anthropic-ai/sdk";
+import OpenAI from "openai";
 import { NextResponse } from "next/server";
 
 const systemPrompt = `You are an expert statistics tutor helping a student pass their Intro to Statistics final exam at WCTC (Waukesha County Technical College). The exam is tomorrow morning. The professor is Gina Moran. The topics are: empirical rule, normal distribution, central limit theorem, confidence intervals (Z, T, proportion), hypothesis testing (5-step framework), two-sample tests, chi-square goodness of fit, and ANOVA.
@@ -34,11 +34,11 @@ When providing TI-84 commands:
 
 export async function POST(req: Request) {
   try {
-    const apiKey = process.env.ANTHROPIC_API_KEY;
+    const apiKey = process.env.OPENAI_API_KEY;
 
     if (!apiKey) {
       return NextResponse.json(
-        { error: "API key not configured. Add ANTHROPIC_API_KEY to Vercel environment variables." },
+        { error: "API key not configured. Add OPENAI_API_KEY to Vercel environment variables." },
         { status: 500 }
       );
     }
@@ -52,28 +52,29 @@ export async function POST(req: Request) {
       );
     }
 
-    const anthropic = new Anthropic({ apiKey });
+    const openai = new OpenAI({ apiKey });
 
-    const response = await anthropic.messages.create({
-      model: "claude-sonnet-4-20250514",
+    const response = await openai.chat.completions.create({
+      model: "gpt-4o",
       max_tokens: 2048,
-      system: systemPrompt,
-      messages: messages.map((msg: { role: string; content: string }) => ({
-        role: msg.role as "user" | "assistant",
-        content: msg.content,
-      })),
+      messages: [
+        { role: "system", content: systemPrompt },
+        ...messages.map((msg: { role: string; content: string }) => ({
+          role: msg.role as "user" | "assistant",
+          content: msg.content,
+        })),
+      ],
     });
 
-    const textContent = response.content.find((block) => block.type === "text");
-    const content = textContent && "text" in textContent ? textContent.text : "";
+    const content = response.choices[0]?.message?.content ?? "";
 
     return NextResponse.json({ content });
   } catch (error) {
     console.error("Chat API error:", error);
 
-    if (error instanceof Anthropic.APIError) {
+    if (error instanceof OpenAI.APIError) {
       return NextResponse.json(
-        { error: `Anthropic API error: ${error.message}` },
+        { error: `OpenAI API error: ${error.message}` },
         { status: error.status || 500 }
       );
     }

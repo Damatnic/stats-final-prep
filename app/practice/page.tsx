@@ -143,6 +143,7 @@ const problems: Problem[] = [
       { id: "i7f3", label: "Sample size: n = ", answer: 49, hint: "'sample of 49 bulbs' → n = 49" },
       { id: "i7f4", label: "Sample mean: x̄ = ", answer: 980, hint: "'average lifetime of 980 hours' → x̄ = 980" },
       { id: "i7f5", label: "Significance level: α = ", answer: 0.05, tolerance: 0.001, hint: "'significance level of 0.05' → α = 0.05" },
+      { id: "i7f6", label: "Alternative hypothesis direction (type < > or ≠): H₁: μ ", answer: "<", hint: "'less than' → H₁: μ < 1000 → left-tailed. Type the symbol: <" },
     ],
     steps: [
       { instruction: "H₁: μ < 1000 (left-tailed). σ known → Z-test. Calculate: z = (x̄ − μ₀) / (σ/√n)", fields: [{ id: "s1f1", label: "z = ", answer: -2, tolerance: 0.01, hint: "70/√49 = 70/7 = 10. z = (980-1000)/10 = -2.00" }], explanation: "z = -2.00. Negative because x̄ < μ₀." },
@@ -159,6 +160,8 @@ const problems: Problem[] = [
       { id: "i8f2", label: "Population std dev (σ → Z-test): σ = ", answer: 4800, hint: "'population standard deviation is 4,800' → σ known → Z-test" },
       { id: "i8f3", label: "Sample size: n = ", answer: 64, hint: "'sample of 64 tires' → n = 64" },
       { id: "i8f4", label: "Sample mean: x̄ = ", answer: 51200, hint: "'mean of 51,200 miles' → x̄ = 51200" },
+      { id: "i8f5", label: "Significance level: α = ", answer: 0.05, tolerance: 0.001, hint: "'significance level of 0.05' → α = 0.05" },
+      { id: "i8f6", label: "Alternative hypothesis direction (type < > or ≠): H₁: μ ", answer: ">", hint: "'exceeds' → H₁: μ > 50000 → right-tailed. Type the symbol: >" },
     ],
     steps: [
       { instruction: "'Exceeds' → RIGHT-tailed. H₁: μ > 50000. Calculate z = (51200 − 50000) / (4800/√64)", fields: [{ id: "s1f1", label: "z = ", answer: 2, tolerance: 0.01, hint: "4800/√64 = 4800/8 = 600. z = 1200/600 = 2.00" }], explanation: "z = +2.00. Positive because x̄ > μ₀." },
@@ -176,6 +179,7 @@ const problems: Problem[] = [
       { id: "i9f3", label: "Sample size: n = ", answer: 36, hint: "'samples 36 bags' → n = 36" },
       { id: "i9f4", label: "Sample mean: x̄ = ", answer: 15.85, tolerance: 0.005, hint: "'mean of 15.85 oz' → x̄ = 15.85" },
       { id: "i9f5", label: "Significance level: α = ", answer: 0.01, tolerance: 0.001, hint: "'significance level of 0.01' → α = 0.01" },
+      { id: "i9f6", label: "Alternative hypothesis direction (type < > or ≠): H₁: μ ", answer: "≠", hint: "'either direction' / 'incorrectly' → H₁: μ ≠ 16 → two-tailed. Type ≠ or !=" },
     ],
     steps: [
       { instruction: "'Either direction' → TWO-TAILED. H₁: μ ≠ 16. Calculate z = (15.85 − 16) / (0.4/√36)", fields: [{ id: "s1f1", label: "z = ", answer: -2.25, tolerance: 0.05, hint: "0.4/6 = 0.0667. z = -0.15/0.0667 = -2.25" }], explanation: "z = -2.25" },
@@ -193,6 +197,7 @@ const problems: Problem[] = [
       { id: "i10f3", label: "Sample std dev (s given → T-test): s = ", answer: 3, hint: "'standard deviation of 3 pounds' → s from sample → T-test" },
       { id: "i10f4", label: "Sample size: n = ", answer: 16, hint: "'randomly selects 16 members' → n = 16" },
       { id: "i10f5", label: "Significance level: α = ", answer: 0.05, tolerance: 0.001, hint: "'significance level of 0.05' → α = 0.05" },
+      { id: "i10f6", label: "Alternative hypothesis direction (type < > or ≠): H₁: μ ", answer: "≠", hint: "'different from advertised' → H₁: μ ≠ 10 → two-tailed. Type ≠ or !=" },
     ],
     steps: [
       { instruction: "s given → T-test. df = n − 1 = ?", fields: [{ id: "s1f1", label: "df = ", answer: 15, hint: "16 - 1 = 15" }], explanation: "df = 15. T-test because only s is known." },
@@ -210,6 +215,8 @@ const problems: Problem[] = [
       { id: "i11f2", label: "Sample size: n = ", answer: 200, hint: "'poll of 200 voters' → n = 200" },
       { id: "i11f3", label: "Count with trait: x = ", answer: 108, hint: "'108 support her' → x = 108" },
       { id: "i11f4", label: "Sample proportion: p̂ = x/n = ", answer: 0.54, tolerance: 0.005, hint: "108 ÷ 200 = 0.54" },
+      { id: "i11f5", label: "Significance level: α = ", answer: 0.05, tolerance: 0.001, hint: "'significance level of 0.05' → α = 0.05" },
+      { id: "i11f6", label: "Alternative hypothesis direction (type < > or ≠): H₁: p ", answer: "<", hint: "'less than the claimed value' → H₁: p < 0.60 → left-tailed. Type: <" },
     ],
     steps: [
       { instruction: "p̂ = 108/200 = 0.54. H₁: p < 0.60 (left-tailed). Calculate z = (p̂ − p₀) / √(p₀ × q₀ / n). Use p₀ = 0.60 in denominator!", fields: [{ id: "s1f1", label: "z = ", answer: -1.732, tolerance: 0.03, hint: "√(0.60×0.40/200) = √0.0012 = 0.03464. z = (0.54-0.60)/0.03464 = -1.732" }], explanation: "z ≈ -1.73. CRITICAL: always use p₀ (the null value) in the denominator!" },
@@ -229,6 +236,8 @@ const problems: Problem[] = [
       { id: "i12f5", label: "Group 2 sample mean: x̄₂ = ", answer: 77, hint: "'average score 77' for Group 2 → x̄₂ = 77" },
       { id: "i12f6", label: "Group 2 sample std dev: s₂ = ", answer: 8, hint: "'standard deviation 8' for Group 2 → s₂ = 8" },
       { id: "i12f7", label: "ALEKS df = min(n₁−1, n₂−1) = ", answer: 12, hint: "min(13−1, 15−1) = min(12, 14) = 12. ALEKS RULE: always use the SMALLER df!" },
+      { id: "i12f8", label: "Significance level: α = ", answer: 0.05, tolerance: 0.001, hint: "'significance level of 0.05' → α = 0.05" },
+      { id: "i12f9", label: "Alternative hypothesis direction (type < > or ≠): H₁: μ₁ − μ₂ ", answer: ">", hint: "'scored higher' → Group 1 > Group 2 → H₁: μ₁ − μ₂ > 0 → right-tailed. Type: >" },
     ],
     steps: [
       { instruction: "⚠️ ALEKS RULE: df = min(n₁−1, n₂−1) = min(12, 14) = ?", fields: [{ id: "s1f1", label: "df = ", answer: 12, hint: "min(13-1, 15-1) = min(12, 14) = 12. Always the SMALLER df on ALEKS!" }], explanation: "df = 12. ALEKS conservative rule — not Welch's formula." },
@@ -381,6 +390,8 @@ interface ProblemState {
 
 function checkAnswer(input: string, answer: number | string, tolerance = 0.015): boolean {
   const clean = input.trim().toLowerCase().replace(/[,%]/g, "");
+  // normalize != to ≠ so students can type either
+  clean = clean.replace("!=", "≠");
   if (typeof answer === "number") {
     const num = parseFloat(clean);
     if (isNaN(num)) return false;
